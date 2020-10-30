@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.1" />
+<title>ir-2 API documentation</title>
+<meta name="description" content="IR.ipynb …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>ir-2</code></h1>
+</header>
+<section id="section-intro">
+<p>IR.ipynb</p>
+<p>Automatically generated by Colaboratory.</p>
+<p>Original file is located at
+<a href="https://colab.research.google.com/drive/1dIHB7pxXGf6pPNtDBXDbP6B5IGKIozOs">https://colab.research.google.com/drive/1dIHB7pxXGf6pPNtDBXDbP6B5IGKIozOs</a></p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python"># -*- coding: utf-8 -*-
+&#34;&#34;&#34;IR.ipynb
+
+Automatically generated by Colaboratory.
+
+Original file is located at
+    https://colab.research.google.com/drive/1dIHB7pxXGf6pPNtDBXDbP6B5IGKIozOs
+&#34;&#34;&#34;
+
+#!gdown --id 1HSh3wkhjgMdjtrkwQUPszRKo_KFF-kGk
+
+import pandas as pd
+import random
+df = pd.read_csv(&#39;human_data.txt&#39;, sep=&#34;\t&#34;)
+&#34;&#34;&#34;df is the variable that stores all our data ( DNA strings here )&#34;&#34;&#34;
+len(df)
+
+df.head()
+
+&#34;&#34;&#34;&lt;h5&gt; A function to find the shingles of our data 
+&lt;ol&gt; It takes in 2 inputs :
+&lt;li&gt; The string , from which it will generate the shingles &lt;/li&gt;
+&lt;li&gt; The length of each shingle. It will generate a k-shingle and return it &lt;/li&gt;
+&lt;/ol&gt;
+It returns all the shingles from its string input
+&lt;/h5&gt;
+&#34;&#34;&#34;
+
+def find_shingles(string, k):
+    &#34;&#34;&#34;
+    &lt;h5&gt; A function to find the shingles of our data 
+    &lt;ol&gt; It takes in 2 inputs :
+    &lt;li&gt; The string , from which it will generate the shingles &lt;/li&gt;
+    &lt;li&gt; The length of each shingle. It will generate a k-shingle and return it &lt;/li&gt;
+    &lt;/ol&gt;
+    It returns all the shingles from its string input
+    &lt;/h5&gt;
+    &#34;&#34;&#34;
+    shingle = set()
+    for i in range(len(string)-k+1):
+        shingle.add(string[i:i+k])
+    return shingle
+
+y = df[&#39;class&#39;]
+
+&#34;&#34;&#34;&lt;h5&gt;The main function to create the shingles of all our documents
+&lt;ul&gt;&lt;li&gt; It takes in dataframe , and separates the df into individual document. &lt;/li&gt;
+&lt;li&gt; For each document, it takes in each string and passes it onto the function &lt;i&gt;find_shingles&lt;/i&gt; to get the shingle.&lt;/li&gt; 
+&lt;li&gt; It also checks to ensure that all the shingles are made correctly and there&#39;s no shingle which is empty.&lt;/li&gt;
+&lt;li&gt; Once done that, we once again add all the shingles of each document together.&lt;/li&gt;
+&lt;li&gt; Finally , we add all the documents back into an array and return this &lt;/li&gt;
+&lt;/ul&gt; &lt;/h5&gt;
+&#34;&#34;&#34;
+
+k = 5
+&#34;&#34;&#34;This is our global variable for the shingle length. We can change it and make k-shingles accordingly&#34;&#34;&#34;
+def doc_shingles(df, k):
+    &#34;&#34;&#34;
+    &lt;h5&gt;The main function to create the shingles of all our documents
+    &lt;ul&gt;&lt;li&gt; It takes in dataframe , and separates the df into individual document. &lt;/li&gt;
+    &lt;li&gt; For each document, it takes in each string and passes it onto the function &lt;i&gt;find_shingles&lt;/i&gt; to get the shingle.&lt;/li&gt; 
+    &lt;li&gt; It also checks to ensure that all the shingles are made correctly and there&#39;s no shingle which is empty.&lt;/li&gt;
+    &lt;li&gt; Once done that, we once again add all the shingles of each document together.&lt;/li&gt;
+    &lt;li&gt; Finally , we add all the documents back into an array and return this &lt;/li&gt;
+    &lt;/ul&gt; &lt;/h5&gt;
+    &#34;&#34;&#34;
+    shingle_arr = list()
+    shingle_set = set()
+    invalid_doc = []
+    for i in range(len(df)):
+        shingle = find_shingles(df.loc[i][&#39;sequence&#39;], k)
+        if len(shingle) == 0:
+            invalid_doc.append(i)
+        for i in shingle:
+            shingle_set.add(i)
+        shingle_arr.append(shingle)
+    return shingle_arr, shingle_set
+
+shingle_arr,shingle_set = doc_shingles(df, k)     
+#len(df), len(shingle_arr), len(shingle_set), invalid_doc
+
+&#34;&#34;&#34;&lt;h5&gt;Once we have shingled our documents, we proceed ahead to make our matrix. This function takes in the shingled set and array and generates matrix from them.
+&lt;br&gt;&lt;br&gt;
+It finally will return the generated matrix ,&lt;/h5&gt;
+&#34;&#34;&#34;
+
+import numpy as np
+def gen_matrix(df,shingle_set,shingle_arr):
+    &#34;&#34;&#34;
+    &lt;h5&gt;Once we have shingled our documents, we proceed ahead to make our matrix. This function takes in the shingled set and array and generates matrix from them.
+    &lt;br&gt;&lt;br&gt;
+    It finally will return the generated matrix.&lt;/h5&gt;
+    &#34;&#34;&#34;
+    d = dict()
+    for shingle in shingle_set:
+        d[shingle]=list()
+    for i in range(len(df)):
+        doc_shingle = shingle_arr[i]
+        for global_shingle in shingle_set:
+            if global_shingle in doc_shingle:
+                d[global_shingle].append(1)
+                #print(global_shingle, d[global_shingle])
+            else:
+                d[global_shingle].append(0)
+    mat = []
+    for i in d.keys():
+        mat.append(d[i])
+    mat = np.array(mat)
+    return mat, doc_shingle
+
+matrix, doc_shingle= gen_matrix(df,shingle_set,shingle_arr)
+&#34;&#34;&#34;The variable that stores our matrix after the shingling is complete. 
+We later on use this to generate our signature matrix.&#34;&#34;&#34;
+matrix.shape
+
+&#34;&#34;&#34;&lt;h5&gt;
+&lt;ul&gt;
+&lt;li&gt;We generate the permutation matrix for minhashing using the number of permutations given to us.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;By default this value is 50, and we can change this asd required.&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;It will return us the permutations array consisting of the various permutations that we will work with upon the matrix M during minHashing.&lt;/li&gt;&lt;/ul&gt;
+&lt;/h5&gt;
+&#34;&#34;&#34;
+
+n_perm = 50
+&#34;&#34;&#34;Our global variable to store the number of permutations of the matrix that we will use to convert the matrix M into signature matrix.
+This also defines the size of our signature matrix.&#34;&#34;&#34;    
+def gen_permute(n, matrix):
+    &#34;&#34;&#34;
+    &lt;h5&gt;
+    &lt;ul&gt;
+    &lt;li&gt;We generate the permutation matrix for minhashing using the number of permutations given to us.&lt;br&gt;&lt;/li&gt;
+    &lt;li&gt;By default this value is 50, and we can change this asd required.&lt;br&gt;&lt;/li&gt;
+    &lt;li&gt;It will return us the permutations array consisting of the various permutations that we will work with upon the matrix M during minHashing.&lt;/li&gt;&lt;/ul&gt;
+    &lt;/h5&gt;
+    &#34;&#34;&#34;
+    perm_arr = []
+    for i in range(n_perm):
+        a = np.arange(len(matrix))
+        random.shuffle(a)
+        perm_arr.append(a)
+    return perm_arr
+
+permute_array = gen_permute(n_perm, matrix)
+&#34;&#34;&#34;Our global variable to store the permutations that we will work upon to convert the matrix M into signature matrix&#34;&#34;&#34;
+len(permute_array), len(permute_array[0])
+
+&#34;&#34;&#34;&lt;h5&gt;
+A function to locate an index within our signature matrix . 
+&lt;/h5&gt;
+&#34;&#34;&#34;
+
+def find(indx):
+    &#34;&#34;&#34;
+    &lt;h5&gt;
+    A function to locate an index within our signature matrix . 
+    &lt;/h5&gt;
+    &#34;&#34;&#34;
+    indx = np.array(indx).argsort()
+    sig = np.array([float(&#39;inf&#39;) for _ in range(len(mat[0]))])
+    for i in range(len(indx)):
+        matches = [ind for ind in range(len(mat[indx[i]])) if mat[indx[i]][ind] == 1]
+        for index in matches:
+            sig[index] = min(i, sig[index])
+    return sig
+
+&#34;&#34;&#34;&lt;h5&gt; &lt;ul&gt;A function to generate the signature matrix
+&lt;li&gt;For each row in permutation array, we take in the given set of rows from matrix M and generate an array.&lt;/li&gt;
+&lt;li&gt;We proceed to hash it and keep the minimum of the hash values for each row.&lt;/li&gt;
+&lt;li&gt;Finally , we append all these rows to signature array and return it as the completed signature matrix.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/h5&gt;
+&#34;&#34;&#34;
+
+def gen_sig_matrix(perm_arr,mat):
+    &#34;&#34;&#34;
+    &lt;h5&gt; &lt;ul&gt;A function to generate the signature matrix
+    &lt;li&gt;For each row in permutation array, we take in the given set of rows from matrix M and generate an array.&lt;/li&gt;
+    &lt;li&gt;We proceed to hash it and keep the minimum of the hash values for each row.&lt;/li&gt;
+    &lt;li&gt;Finally , we append all these rows to signature array and return it as the completed signature matrix.&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;/h5&gt;
+    &#34;&#34;&#34;
+    sig_mat = list()
+    l = 0
+    for indx in perm_arr:
+        indx = np.array(indx).argsort()
+        sig = np.array([float(&#39;inf&#39;) for _ in range(len(mat[0]))])
+        for i in range(len(indx)):
+            matches = [ind for ind in range(len(mat[indx[i]])) if mat[indx[i]][ind] == 1]
+            for index in matches:
+                sig[index] = min(i, sig[index])
+        if l%10 == 0:
+            print(l)
+        l+=1
+        sig_mat.append(sig)
+    return sig_mat, perm_arr
+    
+signature_mat, perm_arr = gen_sig_matrix(permute_array, matrix)
+&#34;&#34;&#34;Our variable to store the signature matrix. We get this by using the permutation array on our matrix M&#34;&#34;&#34;
+
+&#34;&#34;&#34;&lt;h5&gt;
+The function for implement LSH ( Locality Sensitive Hashing ) :
+&lt;ul&gt;
+&lt;li&gt;We use the signature matrix as our input here.&lt;/li&gt;
+&lt;li&gt; We run a hash function , which is the sum of the numbers to hash our values into multiple buckets &lt;/li&gt;
+&lt;li&gt; Finally , we return the buckets to our user , which contain the list of possible candidate pairs which can be similar&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/h5&gt;
+&#34;&#34;&#34;
+
+rows = 3    #num of rows per band
+&#34;&#34;&#34;Our global variable to store the number of rows for each band&#34;&#34;&#34;
+n_buckets = 15  #number of buckets
+&#34;&#34;&#34;The global variable to store the number of maximum buckets we will sort the strings into&#34;&#34;&#34;
+
+def lsh(sig_mat,r,n):
+    &#34;&#34;&#34;
+    &lt;h5&gt;
+    The function for implement LSH ( Locality Sensitive Hashing ) :
+    &lt;ul&gt;
+    &lt;li&gt;We use the signature matrix as our input here.&lt;/li&gt;
+    &lt;li&gt; We run a hash function , which is the sum of the numbers to hash our values into multiple buckets &lt;/li&gt;
+    &lt;li&gt; Finally , we return the buckets to our user , which contain the list of possible candidate pairs which can be similar&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;/h5&gt;
+    &#34;&#34;&#34;
+    sig_mat = np.array(sig_mat)
+    buckets = [[] for _ in range(n)]
+    summ = []
+    for i in range(0, len(sig_mat)-r+1, r):
+        band = sig_mat[i:i+r]
+        for doci in range(len(band[0])):
+            try:
+                buckets[int(np.sum(band[:, doci])%len(buckets))].append(doci)
+            except:
+                print(&#34;invalid doc:&#34;, doci)
+    return buckets
+buckets = lsh(signature_mat,rows,n_buckets)
+
+#ATGCCCCAACTAAATACTACCGTATGGCCCACCATAATTACCCCCA
+query = df.iloc[0][&#34;sequence&#34;]
+&#34;&#34;&#34;Our query , for which we search in the dataset &#34;&#34;&#34;
+q_class = df.iloc[0][&#34;class&#34;]
+&#34;&#34;&#34;Our query class, to which our given query belongs to &#34;&#34;&#34;
+shingles = find_shingles(query, k)
+query, q_class
+
+&#34;&#34;&#34;&lt;h5&gt; A function to compare 2 given k shingles. We get the jaccard similarity score of the two here &lt;/h5&gt;&#34;&#34;&#34;
+
+def similarity(s1, s2, k):
+    &#34;&#34;&#34;
+    &lt;h5&gt; A function to compare 2 given k shingles. We get the jaccard similarity score of the two here &lt;/h5&gt;
+    &#34;&#34;&#34;
+    s1 = find_shingles(s1, k)
+    s2 = find_shingles(s2, k)
+    return len(s1&amp;s2)/len(s1|s2)
+
+top_n = 5
+&#34;&#34;&#34;We define this function to store the number of top results that we would give as output.&#34;&#34;&#34;
+def search(query, q_class, doc_shingle, perm_arr, r, top_n):
+    &#34;&#34;&#34;
+    &lt;h5&gt;
+    A function that will take in the &lt;ul&gt;
+    &lt;li&gt;The search query&lt;/li&gt;&lt;li&gt;The search query class&lt;/li&gt;
+    &lt;li&gt;Number of maximum relevant results to be shown&lt;/li&gt;&lt;/ul&gt;
+     and then print the output results , along with their similarity and the string at which they were found.&lt;/h5&gt;
+    &#34;&#34;&#34;
+    query_d = dict()
+    &#34;&#34;&#34;Generate the shingles of our query string&#34;&#34;&#34;
+    for shingle in shingle_set:
+        query_d[shingle]=list()
+    #Generate the shingles of our query string  
+    for global_shingle in shingle_set:
+        if global_shingle in doc_shingle:
+            query_d[global_shingle].append(1)
+        else:
+            query_d[global_shingle].append(0)
+    query_mat = []
+    &#34;&#34;&#34;Generate the matrix for our given query string&#34;&#34;&#34;
+    for i in query_d.keys():
+        query_mat.append(query_d[i])
+    query_mat = np.array(query_mat)
+    #Generate the matrix M for our given query
+    query_sig_mat = list()
+    &#34;&#34;&#34;Signature matrix of our query&#34;&#34;&#34;
+    for indx in perm_arr:
+        indx = np.array(indx).argsort()
+        sig = np.array([float(&#39;inf&#39;) for _ in range(len(query_mat[0]))])
+        for i in range(len(indx)):
+            matches = [ind for ind in range(len(query_mat[indx[i]])) if query_mat[indx[i]][ind] == 1]
+            for index in matches:
+                sig[index] = min(i, sig[index])
+        query_sig_mat.append(sig)    
+    #Successfully generated signature matrix 
+    result_bucket = []
+    &#34;&#34;&#34;The buckets for our result&#34;&#34;&#34;
+    for i in range(0, len(query_sig_mat)-r+1, r):
+        band = query_sig_mat[i:i+r]
+        result_bucket.append(sum(sum(band))%len(buckets))
+    result_doc = []
+    for i in result_bucket:
+        for j in buckets[int(i)]:
+            result_doc.append([similarity(df.iloc[j][&#34;sequence&#34;], query, k), j])
+    result = np.argsort([i[0] for i in result_doc])[::-1][:top_n]
+    #Generated the result. Now we move to printing them.
+    print(&#34;Query:   &#34;, query[:80], &#34;\tClass:&#34;, q_class)
+    print()
+    for i in result:
+        print(&#34;Similarity:&#34;, result_doc[i][0], &#34;\tClass:&#34;, df.iloc[result_doc[i][1]][&#39;class&#39;], &#34;Doc ID: &#34;, result_doc[i][1])
+        print(&#34;Document:&#34;, df.iloc[result_doc[i][1]][&#39;sequence&#39;][:100])
+        print()
+
+search(query, q_class, doc_shingle, perm_arr, rows, top_n)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-variables">Global variables</h2>
+<dl>
+<dt id="ir-2.df"><code class="name">var <span class="ident">df</span></code></dt>
+<dd>
+<div class="desc"><p>df is the variable that stores all our data ( DNA strings here )</p></div>
+</dd>
+<dt id="ir-2.k"><code class="name">var <span class="ident">k</span></code></dt>
+<dd>
+<div class="desc"><p>This is our global variable for the shingle length. We can change it and make k-shingles accordingly</p></div>
+</dd>
+<dt id="ir-2.n_buckets"><code class="name">var <span class="ident">n_buckets</span></code></dt>
+<dd>
+<div class="desc"><p>The global variable to store the number of maximum buckets we will sort the strings into</p></div>
+</dd>
+<dt id="ir-2.n_perm"><code class="name">var <span class="ident">n_perm</span></code></dt>
+<dd>
+<div class="desc"><p>Our global variable to store the number of permutations of the matrix that we will use to convert the matrix M into signature matrix.
+This also defines the size of our signature matrix.</p></div>
+</dd>
+<dt id="ir-2.permute_array"><code class="name">var <span class="ident">permute_array</span></code></dt>
+<dd>
+<div class="desc"><p>Our global variable to store the permutations that we will work upon to convert the matrix M into signature matrix</p></div>
+</dd>
+<dt id="ir-2.q_class"><code class="name">var <span class="ident">q_class</span></code></dt>
+<dd>
+<div class="desc"><p>Our query class, to which our given query belongs to</p></div>
+</dd>
+<dt id="ir-2.query"><code class="name">var <span class="ident">query</span></code></dt>
+<dd>
+<div class="desc"><p>Our query , for which we search in the dataset</p></div>
+</dd>
+<dt id="ir-2.rows"><code class="name">var <span class="ident">rows</span></code></dt>
+<dd>
+<div class="desc"><p>Our global variable to store the number of rows for each band</p></div>
+</dd>
+<dt id="ir-2.top_n"><code class="name">var <span class="ident">top_n</span></code></dt>
+<dd>
+<div class="desc"><p>We define this function to store the number of top results that we would give as output.</p></div>
+</dd>
+<dt id="ir-2.y"><code class="name">var <span class="ident">y</span></code></dt>
+<dd>
+<div class="desc"><h5>The main function to create the shingles of all our documents
+<ul><li> It takes in dataframe , and separates the df into individual document. </li>
+<li> For each document, it takes in each string and passes it onto the function <i>find_shingles</i> to get the shingle.</li>
+<li> It also checks to ensure that all the shingles are made correctly and there's no shingle which is empty.</li>
+<li> Once done that, we once again add all the shingles of each document together.</li>
+<li> Finally , we add all the documents back into an array and return this </li>
+</ul> </h5></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="ir-2.doc_shingles"><code class="name flex">
+<span>def <span class="ident">doc_shingles</span></span>(<span>df, k)</span>
+</code></dt>
+<dd>
+<div class="desc"><h5>The main function to create the shingles of all our documents
+<ul><li> It takes in dataframe , and separates the df into individual document. </li>
+<li> For each document, it takes in each string and passes it onto the function <i>find_shingles</i> to get the shingle.</li>
+<li> It also checks to ensure that all the shingles are made correctly and there's no shingle which is empty.</li>
+<li> Once done that, we once again add all the shingles of each document together.</li>
+<li> Finally , we add all the documents back into an array and return this </li>
+</ul> </h5></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def doc_shingles(df, k):
+    &#34;&#34;&#34;
+    &lt;h5&gt;The main function to create the shingles of all our documents
+    &lt;ul&gt;&lt;li&gt; It takes in dataframe , and separates the df into individual document. &lt;/li&gt;
+    &lt;li&gt; For each document, it takes in each string and passes it onto the function &lt;i&gt;find_shingles&lt;/i&gt; to get the shingle.&lt;/li&gt; 
+    &lt;li&gt; It also checks to ensure that all the shingles are made correctly and there&#39;s no shingle which is empty.&lt;/li&gt;
+    &lt;li&gt; Once done that, we once again add all the shingles of each document together.&lt;/li&gt;
+    &lt;li&gt; Finally , we add all the documents back into an array and return this &lt;/li&gt;
+    &lt;/ul&gt; &lt;/h5&gt;
+    &#34;&#34;&#34;
+    shingle_arr = list()
+    shingle_set = set()
+    invalid_doc = []
+    for i in range(len(df)):
+        shingle = find_shingles(df.loc[i][&#39;sequence&#39;], k)
+        if len(shingle) == 0:
+            invalid_doc.append(i)
+        for i in shingle:
+            shingle_set.add(i)
+        shingle_arr.append(shingle)
+    return shingle_arr, shingle_set</code></pre>
+</details>
+</dd>
+<dt id="ir-2.find"><code class="name flex">
+<span>def <span class="ident">find</span></span>(<span>indx)</span>
+</code></dt>
+<dd>
+<div class="desc"><h5>
+A function to locate an index within our signature matrix .
+</h5></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find(indx):
+    &#34;&#34;&#34;
+    &lt;h5&gt;
+    A function to locate an index within our signature matrix . 
+    &lt;/h5&gt;
+    &#34;&#34;&#34;
+    indx = np.array(indx).argsort()
+    sig = np.array([float(&#39;inf&#39;) for _ in range(len(mat[0]))])
+    for i in range(len(indx)):
+        matches = [ind for ind in range(len(mat[indx[i]])) if mat[indx[i]][ind] == 1]
+        for index in matches:
+            sig[index] = min(i, sig[index])
+    return sig</code></pre>
+</details>
+</dd>
+<dt id="ir-2.find_shingles"><code class="name flex">
+<span>def <span class="ident">find_shingles</span></span>(<span>string, k)</span>
+</code></dt>
+<dd>
+<div class="desc"><h5> A function to find the shingles of our data
+<ol> It takes in 2 inputs :
+<li> The string , from which it will generate the shingles </li>
+<li> The length of each shingle. It will generate a k-shingle and return it </li>
+</ol>
+It returns all the shingles from its string input
+</h5></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_shingles(string, k):
+    &#34;&#34;&#34;
+    &lt;h5&gt; A function to find the shingles of our data 
+    &lt;ol&gt; It takes in 2 inputs :
+    &lt;li&gt; The string , from which it will generate the shingles &lt;/li&gt;
+    &lt;li&gt; The length of each shingle. It will generate a k-shingle and return it &lt;/li&gt;
+    &lt;/ol&gt;
+    It returns all the shingles from its string input
+    &lt;/h5&gt;
+    &#34;&#34;&#34;
+    shingle = set()
+    for i in range(len(string)-k+1):
+        shingle.add(string[i:i+k])
+    return shingle</code></pre>
+</details>
+</dd>
+<dt id="ir-2.gen_matrix"><code class="name flex">
+<span>def <span class="ident">gen_matrix</span></span>(<span>df, shingle_set, shingle_arr)</span>
+</code></dt>
+<dd>
+<div class="desc"><h5>Once we have shingled our documents, we proceed ahead to make our matrix. This function takes in the shingled set and array and generates matrix from them.
+<br><br>
+It finally will return the generated matrix.</h5></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def gen_matrix(df,shingle_set,shingle_arr):
+    &#34;&#34;&#34;
+    &lt;h5&gt;Once we have shingled our documents, we proceed ahead to make our matrix. This function takes in the shingled set and array and generates matrix from them.
+    &lt;br&gt;&lt;br&gt;
+    It finally will return the generated matrix.&lt;/h5&gt;
+    &#34;&#34;&#34;
+    d = dict()
+    for shingle in shingle_set:
+        d[shingle]=list()
+    for i in range(len(df)):
+        doc_shingle = shingle_arr[i]
+        for global_shingle in shingle_set:
+            if global_shingle in doc_shingle:
+                d[global_shingle].append(1)
+                #print(global_shingle, d[global_shingle])
+            else:
+                d[global_shingle].append(0)
+    mat = []
+    for i in d.keys():
+        mat.append(d[i])
+    mat = np.array(mat)
+    return mat, doc_shingle</code></pre>
+</details>
+</dd>
+<dt id="ir-2.gen_permute"><code class="name flex">
+<span>def <span class="ident">gen_permute</span></span>(<span>n, matrix)</span>
+</code></dt>
+<dd>
+<div class="desc"><h5>
+<ul>
+<li>We generate the permutation matrix for minhashing using the number of permutations given to us.<br></li>
+<li>By default this value is 50, and we can change this asd required.<br></li>
+<li>It will return us the permutations array consisting of the various permutations that we will work with upon the matrix M during minHashing.</li></ul>
+</h5></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def gen_permute(n, matrix):
+    &#34;&#34;&#34;
+    &lt;h5&gt;
+    &lt;ul&gt;
+    &lt;li&gt;We generate the permutation matrix for minhashing using the number of permutations given to us.&lt;br&gt;&lt;/li&gt;
+    &lt;li&gt;By default this value is 50, and we can change this asd required.&lt;br&gt;&lt;/li&gt;
+    &lt;li&gt;It will return us the permutations array consisting of the various permutations that we will work with upon the matrix M during minHashing.&lt;/li&gt;&lt;/ul&gt;
+    &lt;/h5&gt;
+    &#34;&#34;&#34;
+    perm_arr = []
+    for i in range(n_perm):
+        a = np.arange(len(matrix))
+        random.shuffle(a)
+        perm_arr.append(a)
+    return perm_arr</code></pre>
+</details>
+</dd>
+<dt id="ir-2.gen_sig_matrix"><code class="name flex">
+<span>def <span class="ident">gen_sig_matrix</span></span>(<span>perm_arr, mat)</span>
+</code></dt>
+<dd>
+<div class="desc"><h5> <ul>A function to generate the signature matrix
+<li>For each row in permutation array, we take in the given set of rows from matrix M and generate an array.</li>
+<li>We proceed to hash it and keep the minimum of the hash values for each row.</li>
+<li>Finally , we append all these rows to signature array and return it as the completed signature matrix.</li>
+</ul>
+</h5></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def gen_sig_matrix(perm_arr,mat):
+    &#34;&#34;&#34;
+    &lt;h5&gt; &lt;ul&gt;A function to generate the signature matrix
+    &lt;li&gt;For each row in permutation array, we take in the given set of rows from matrix M and generate an array.&lt;/li&gt;
+    &lt;li&gt;We proceed to hash it and keep the minimum of the hash values for each row.&lt;/li&gt;
+    &lt;li&gt;Finally , we append all these rows to signature array and return it as the completed signature matrix.&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;/h5&gt;
+    &#34;&#34;&#34;
+    sig_mat = list()
+    l = 0
+    for indx in perm_arr:
+        indx = np.array(indx).argsort()
+        sig = np.array([float(&#39;inf&#39;) for _ in range(len(mat[0]))])
+        for i in range(len(indx)):
+            matches = [ind for ind in range(len(mat[indx[i]])) if mat[indx[i]][ind] == 1]
+            for index in matches:
+                sig[index] = min(i, sig[index])
+        if l%10 == 0:
+            print(l)
+        l+=1
+        sig_mat.append(sig)
+    return sig_mat, perm_arr</code></pre>
+</details>
+</dd>
+<dt id="ir-2.lsh"><code class="name flex">
+<span>def <span class="ident">lsh</span></span>(<span>sig_mat, r, n)</span>
+</code></dt>
+<dd>
+<div class="desc"><h5>
+The function for implement LSH ( Locality Sensitive Hashing ) :
+<ul>
+<li>We use the signature matrix as our input here.</li>
+<li> We run a hash function , which is the sum of the numbers to hash our values into multiple buckets </li>
+<li> Finally , we return the buckets to our user , which contain the list of possible candidate pairs which can be similar</li>
+</ul>
+</h5></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def lsh(sig_mat,r,n):
+    &#34;&#34;&#34;
+    &lt;h5&gt;
+    The function for implement LSH ( Locality Sensitive Hashing ) :
+    &lt;ul&gt;
+    &lt;li&gt;We use the signature matrix as our input here.&lt;/li&gt;
+    &lt;li&gt; We run a hash function , which is the sum of the numbers to hash our values into multiple buckets &lt;/li&gt;
+    &lt;li&gt; Finally , we return the buckets to our user , which contain the list of possible candidate pairs which can be similar&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;/h5&gt;
+    &#34;&#34;&#34;
+    sig_mat = np.array(sig_mat)
+    buckets = [[] for _ in range(n)]
+    summ = []
+    for i in range(0, len(sig_mat)-r+1, r):
+        band = sig_mat[i:i+r]
+        for doci in range(len(band[0])):
+            try:
+                buckets[int(np.sum(band[:, doci])%len(buckets))].append(doci)
+            except:
+                print(&#34;invalid doc:&#34;, doci)
+    return buckets</code></pre>
+</details>
+</dd>
+<dt id="ir-2.search"><code class="name flex">
+<span>def <span class="ident">search</span></span>(<span>query, q_class, doc_shingle, perm_arr, r, top_n)</span>
+</code></dt>
+<dd>
+<div class="desc"><h5>
+A function that will take in the <ul>
+<li>The search query</li><li>The search query class</li>
+<li>Number of maximum relevant results to be shown</li></ul>
+and then print the output results , along with their similarity and the string at which they were found.</h5></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def search(query, q_class, doc_shingle, perm_arr, r, top_n):
+    &#34;&#34;&#34;
+    &lt;h5&gt;
+    A function that will take in the &lt;ul&gt;
+    &lt;li&gt;The search query&lt;/li&gt;&lt;li&gt;The search query class&lt;/li&gt;
+    &lt;li&gt;Number of maximum relevant results to be shown&lt;/li&gt;&lt;/ul&gt;
+     and then print the output results , along with their similarity and the string at which they were found.&lt;/h5&gt;
+    &#34;&#34;&#34;
+    query_d = dict()
+    &#34;&#34;&#34;Generate the shingles of our query string&#34;&#34;&#34;
+    for shingle in shingle_set:
+        query_d[shingle]=list()
+    #Generate the shingles of our query string  
+    for global_shingle in shingle_set:
+        if global_shingle in doc_shingle:
+            query_d[global_shingle].append(1)
+        else:
+            query_d[global_shingle].append(0)
+    query_mat = []
+    &#34;&#34;&#34;Generate the matrix for our given query string&#34;&#34;&#34;
+    for i in query_d.keys():
+        query_mat.append(query_d[i])
+    query_mat = np.array(query_mat)
+    #Generate the matrix M for our given query
+    query_sig_mat = list()
+    &#34;&#34;&#34;Signature matrix of our query&#34;&#34;&#34;
+    for indx in perm_arr:
+        indx = np.array(indx).argsort()
+        sig = np.array([float(&#39;inf&#39;) for _ in range(len(query_mat[0]))])
+        for i in range(len(indx)):
+            matches = [ind for ind in range(len(query_mat[indx[i]])) if query_mat[indx[i]][ind] == 1]
+            for index in matches:
+                sig[index] = min(i, sig[index])
+        query_sig_mat.append(sig)    
+    #Successfully generated signature matrix 
+    result_bucket = []
+    &#34;&#34;&#34;The buckets for our result&#34;&#34;&#34;
+    for i in range(0, len(query_sig_mat)-r+1, r):
+        band = query_sig_mat[i:i+r]
+        result_bucket.append(sum(sum(band))%len(buckets))
+    result_doc = []
+    for i in result_bucket:
+        for j in buckets[int(i)]:
+            result_doc.append([similarity(df.iloc[j][&#34;sequence&#34;], query, k), j])
+    result = np.argsort([i[0] for i in result_doc])[::-1][:top_n]
+    #Generated the result. Now we move to printing them.
+    print(&#34;Query:   &#34;, query[:80], &#34;\tClass:&#34;, q_class)
+    print()
+    for i in result:
+        print(&#34;Similarity:&#34;, result_doc[i][0], &#34;\tClass:&#34;, df.iloc[result_doc[i][1]][&#39;class&#39;], &#34;Doc ID: &#34;, result_doc[i][1])
+        print(&#34;Document:&#34;, df.iloc[result_doc[i][1]][&#39;sequence&#39;][:100])
+        print()</code></pre>
+</details>
+</dd>
+<dt id="ir-2.similarity"><code class="name flex">
+<span>def <span class="ident">similarity</span></span>(<span>s1, s2, k)</span>
+</code></dt>
+<dd>
+<div class="desc"><h5> A function to compare 2 given k shingles. We get the jaccard similarity score of the two here </h5></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def similarity(s1, s2, k):
+    &#34;&#34;&#34;
+    &lt;h5&gt; A function to compare 2 given k shingles. We get the jaccard similarity score of the two here &lt;/h5&gt;
+    &#34;&#34;&#34;
+    s1 = find_shingles(s1, k)
+    s2 = find_shingles(s2, k)
+    return len(s1&amp;s2)/len(s1|s2)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-variables">Global variables</a></h3>
+<ul class="two-column">
+<li><code><a title="ir-2.df" href="#ir-2.df">df</a></code></li>
+<li><code><a title="ir-2.k" href="#ir-2.k">k</a></code></li>
+<li><code><a title="ir-2.n_buckets" href="#ir-2.n_buckets">n_buckets</a></code></li>
+<li><code><a title="ir-2.n_perm" href="#ir-2.n_perm">n_perm</a></code></li>
+<li><code><a title="ir-2.permute_array" href="#ir-2.permute_array">permute_array</a></code></li>
+<li><code><a title="ir-2.q_class" href="#ir-2.q_class">q_class</a></code></li>
+<li><code><a title="ir-2.query" href="#ir-2.query">query</a></code></li>
+<li><code><a title="ir-2.rows" href="#ir-2.rows">rows</a></code></li>
+<li><code><a title="ir-2.top_n" href="#ir-2.top_n">top_n</a></code></li>
+<li><code><a title="ir-2.y" href="#ir-2.y">y</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="ir-2.doc_shingles" href="#ir-2.doc_shingles">doc_shingles</a></code></li>
+<li><code><a title="ir-2.find" href="#ir-2.find">find</a></code></li>
+<li><code><a title="ir-2.find_shingles" href="#ir-2.find_shingles">find_shingles</a></code></li>
+<li><code><a title="ir-2.gen_matrix" href="#ir-2.gen_matrix">gen_matrix</a></code></li>
+<li><code><a title="ir-2.gen_permute" href="#ir-2.gen_permute">gen_permute</a></code></li>
+<li><code><a title="ir-2.gen_sig_matrix" href="#ir-2.gen_sig_matrix">gen_sig_matrix</a></code></li>
+<li><code><a title="ir-2.lsh" href="#ir-2.lsh">lsh</a></code></li>
+<li><code><a title="ir-2.search" href="#ir-2.search">search</a></code></li>
+<li><code><a title="ir-2.similarity" href="#ir-2.similarity">similarity</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.1</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Design Document</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Cinzel Decorative' rel='stylesheet'>
+
+  <style>
+    .row.content {
+      margin-top: 5%;
+    }
+
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 18px;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+
+    th,
+    td {
+      padding: 15px 15px;
+    }
+
+    table {
+      border-spacing: 5px;
+    }
+  </style>
+</head>
+
+<body style="background-color:rgb(47, 48, 49); color:snow;padding-bottom: 5%;">
+  <div class="container-fluid     ">
+    <div class="row content">
+      <div class="col-sm-8 col-sm-offset-2 ">
+        <b>
+          <p class="text-center" style="font-size: 35px;">Locality Sensitive Hashing<br>
+        </b>
+        <hr>
+        <b class="text-center" style="font-size: 28px"> Roadmap & Architecture</b>
+        <hr>
+        <b class="text-left" style="font-size: 25px;">Architecture</b>
+        <p style="padding-left: 5%;"> We have chosen an architecture similar to the microservices architecture where we
+          have broken down each functionality to it's smallest component.</p>
+        <br><b class="text-left" style="font-size: 25px;">Our dataset choice</b>
+        <ul>
+          <li>We have implemented an LSH system to search for relevant DNA samples from the human DNA dataset shared with us.
+          </li>
+          <li>We chose this dataset as it had a lot of DNA samples and they were only made up of 4 bases and these 4 bases are the building block for the making of almost all modern life on the planet. We wanted to get insight in this dataset by LSH.</li>
+        </ul>
+        <br><b class="text-left" style="font-size: 25px;">Loading the dataset</b>
+
+        <ul>
+          This dataset is popularly available and free to use. We have a <i>tab separated</i> file where we have the sequence of dataset followed by the class it belongs to. 
+        </ul>
+        <br>
+
+        <b class="text-left" style="font-size: 25px;">Shingling</b>
+        <ul> Here we create a set of <i>k sequencences</i> of the string. Using this set as the basis to find the similarity among the documents. 
+          <li>
+            We have created 2 functions to work with here:
+            <ul>
+              <li>
+                First function takes input <i>string and k</i> to find the k-shingles of the string.
+              </li>
+              <li>
+                The second function calls the first function for every single sequence of our dataset.
+              </li>
+            </ul> 
+          </li>
+        </ul>
+        <br>
+
+        <b class="text-left" style="font-size: 25px;">Min Hashing</b>
+
+        <ul>After creating the shingles of the dataset we create a matrix of document and shingles which has 1 in its cell if the shingle is present in the document else it has a value of 0.<br>
+          Here we create <i>n</i> random permutation of of the number of documents where we iterate through it and then we follow the procedure to find the elements and build the signature matrix.          
+        </ul>
+        <br>
+
+        <b class="text-left" style="font-size: 25px;">LSH</b>
+
+        <ul>Now that the signature matrix is built we have to divide it into bands and put a hash function to find documents which are locally similar.
+
+          <li> We divide the signature matrix into <i>b</i> bands.</li>
+          <li> Then we make each column of the band as the signature of the document and put a hash function to see which documents are similar. The ones which are found out to be similar are put into one bucket.</li>
+        </ul>
+        <br>
+
+        <b class="text-left" style="font-size: 25px;">Querying</b>
+
+        <ul>Now that we have the buckets and the documents in the corresponding buckets.
+
+          <li> We get the Query and process it as:
+            <ul>
+              <li>
+                Find the Shingles.
+              </li>
+              <li>
+                Find the corresponding vector of the query.
+              </li>
+              <li>
+                Find the signature vector of the query with the corresponding <i>n</i> permutations.
+              </li>
+              <li>
+                Find the buckets which the LSH step takes the query into:
+              </li>
+              <li>
+                Find the similarity of the query with the documents which share the same bucket.
+              </li>
+            </ul>
+          </li>
+          <li>Then we make each column of the band as the signature of the document and put a hash function to see which documents are similar. The ones which are found out to be similar are put into one bucket.</li>
+        </ul>
+        <br>
+
+        <hr>
+        <b class="text-center" style="font-size: 28px">Libraries Used</b>
+        <hr>
+        <ul>
+          <li>numpy : <i>This library has been used to work with arrays and matrices.</i></li>
+          <li>pandas: <i>This library is used to load the dataset from the csv file </i></li>
+          <li>matplotlib: <i>This library is used to create plots of the <b>probability (candidate|Jaccard) vs Jacard similarity</b></i></li>
+        </ul>
+        <hr>
+        <b class="text-center" style="font-size: 28px"> Data Structures and Algorithms with their Justification</b>
+        <hr>
+        We have majorly used 3 data structures:<br><br>
+        <ul>
+          <li>
+            <b>String</b> : It is used in multiple function calls and instances. This data type forms the basis of our
+            dataset.<br><br>
+            <i>Justification:</i> From query to the output almost everything is a sequence of characters, String
+            is most obvious structure to use in such cases. They can be efficiently managed and extracted the shingles out of them.
+            <br><br>
+            <ul>
+              Our DNA sequence is a sequence of characters and we have used strings to manage the sequence and find shingles out of it.
+            </ul>
+          </li>
+          <br>
+
+          <li>
+            Set : It is an unordered collection of unique elements and it is used to store set of shingles.
+            <br><br>
+            <i>Justification:</i> Even if a string has shingles repeated we need to consider it only once. This is efficiently and flawlessly handeled by the set datasetucture.:
+            <br><br>
+            <ul>
+              <li>
+                If we use something like a list there will be duplicates or overhead to store the elements of checking.
+                <ul>
+                  <li>
+                    Numpy makes it very easy to see the shape of matrices and debug when we dont see the output we need.
+                  </li>
+                </ul>
+              </li><br>
+              <li>
+                Sorting the resultant similarity  
+                <ul>
+                  <li>
+                    Similarity scores are returned as an array where we need to sort them to get the top scores. This is
+                    most conviniently and efficiently done in the data structure of array. This is one of the
+                    functonality of numpy, streamiling the task.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li><br>
+
+          <li>
+            Lists : It has been used to store multiple strings, sets and more. The buckets , matrix and similarity matrix each is a list of lists.
+            <br><br>
+            <i>Justification:</i> Lists make it very convenient to handel large dimensional data, The bucket is an list which houses lists where each list has the similar documents. The usage of lists help us by:
+            <br><br>
+            <ul>
+              <li>
+                Iterating through flawlessly through the items.
+                <ul>
+                  <li>
+                    Numpy makes it very easy to see the shape of matrices and debug when we dont see the output we need.
+                  </li>
+                </ul>
+              </li><br>
+              <li>
+                Sorting the resultant similarity  
+                <ul>
+                  <li>
+                    Similarity scores are returned as an array where we need to sort them to get the top scores. This is
+                    most conviniently and efficiently done in the data structure of array. This is one of the
+                    functonality of numpy, streamiling the task.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li><br>
+
+          <li>
+            Dictionary : This data structure has key and value pairs where the key in the structure gives value.<br><br>
+            <i>Justification :</i> We have used this for creating our references from shingle to document. This is used to
+            streamline and make the structure more readable and easier to access.<br><br>
+            <ul>
+              <li>
+                Dictionary makes our indexing bound to not only numbers, it enables us to use string references to
+                access the data.
+              </li><br>
+              <li>
+                We have an index of shingle which maps to the document which it is present. It streamilnes the way we access and build out matrix of document and shingle.
+              </li><br>
+            </ul>
+          </li>
+        </ul>
+        <hr>
+
+        <h3>Run-Time Analysis of our Search Engine: </h3>
+        <hr>
+
+
+        <h3>
+          Building the Indexes with and without preprocessing for both the embeddings, we found the following :
+        </h3>
+        <ul>
+          <li>
+            Shingling of our corpus took 2.74 seconds.
+          </li>
+          <li>
+            Matrix Generation took 1.5 seconds.
+          </li>
+          <li>
+            Minhashing took 4 minutes.
+          </li>
+          <li>
+            LSH took 31 miliseconds.
+          </li>
+          <li>
+            Querying took 2.3 seconds.
+          </li>
+        </ul>
+        
+        <p style="font-size: 20px;">
+          <t>
+            Here we can see that minhashing took long we thought about multithreading asnd implemented it but soon realized that python interpreter has a global lock which makes it single threaded. We have used naiev Permuation approach but lookifn gorward we would work on making this step efficient.
+          </t>
+        </p>
+
+        <br>
+
+      </div>
+
+    </div>
+
+  </div>
