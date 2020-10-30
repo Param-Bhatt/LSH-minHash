@@ -59,3 +59,9 @@ pip install pandas
 ```
 pip install random
 ```
+
+
+### Contributors
+* <a href="https://github.com/siddsh> Siddhant Kulkarni </a>
+* <a href="https://github.com/Param-Bhatt> Param Bhatt </a>
+*  Yashvi Khant
