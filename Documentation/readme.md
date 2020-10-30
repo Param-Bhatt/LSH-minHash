@@ -7,12 +7,20 @@ Assignment 2 done as a part for the course IS F469 Information Retrieval.
 * <i>query</i> is the variable that stores your query and searches for it. Please update that for every run . <br> 
 <i>Note that the dataset variable should be an array of strings.</i>
 * Now , to run the program , run :<br>
+    * If you are on windows<br>
+                ```
+                python3 ir.py
+                ```
+    * If you are on linux <br>
+                ```
+                py ir.py
+                ```
     * If you are using Google Colab <br> 
                 ```
                 Press Ctrl+F9 after uploading the IR.ipynb file along with the contents of the repository
                 ```
                 
-* For further queries, refer to the documentation attached herewith.                
+                        
  ### Dependencies :
  We install these libraries each time when the program is run, and it is recommended to enable GPU on your google colab as well, to speed up the pre-processing.
  * numpy
